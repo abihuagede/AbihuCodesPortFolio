@@ -1,0 +1,241 @@
+    <title>AbihuCurrencyGh - Global & Crypto to Cedi Converter</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #000000;
+            color: #FFA500;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #1a1a1a;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(255,165,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #FFA500;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 36px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(255,165,0,0.1);
+        }
+        .converter {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 10px;
+            color: #FFA500;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        select, input {
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 2px solid #FFA500;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: #2a2a2a;
+            color: #FFA500;
+            transition: all 0.3s ease;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 10px rgba(255,215,0,0.3);
+        }
+        button {
+            background: linear-gradient(to right, #FFA500, #FF8C00);
+            color: #000000;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        button:hover {
+            background: linear-gradient(to right, #FF8C00, #FFA500);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,165,0,0.2);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #result {
+            margin-top: 30px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 24px;
+            color: #FFA500;
+            padding: 20px;
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            box-shadow: inset 0 2px 4px rgba(255,165,0,0.1);
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #FF8C00;
+        }
+        .rate-info {
+            margin-top: 20px;
+            font-style: italic;
+            color: #FFD700;
+            text-align: center;
+            font-size: 16px;
+        }
+        .currency-type {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .currency-type label {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .currency-type input[type="radio"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AbihuCurrencyGh</h1>
+        <div class="converter">
+            <div class="currency-type">
+                <label>
+                    <input type="radio" name="currencyType" value="fiat" checked onchange="updateCurrencyList()"> Fiat
+                </label>
+                <label>
+                    <input type="radio" name="currencyType" value="crypto" onchange="updateCurrencyList()"> Crypto
+                </label>
+            </div>
+            <label for="currency">Select Currency:</label>
+            <select id="currency">
+                <!-- Currencies will be populated dynamically -->
+            </select>
+            <label for="amount">Enter amount:</label>
+            <input type="number" id="amount" placeholder="Enter amount" step="any" min="0">
+            <button onclick="convertCurrency()">Convert to Cedis (GHS)</button>
+            <div id="result"></div>
+            <div class="rate-info" id="rateInfo"></div>
+        </div>
+        <div class="footer">
+            <p>Exchange rates last updated: <span id="updateTime"></span></p>
+            <p>Data provided by AbihuCurrencyGh Global & Crypto Exchange Services</p>
+        </div>
+    </div>
+
+    <script>
+        const fiatCurrencies = {
+            USD: { name: "US Dollar", rate: 11.5 },
+            EUR: { name: "Euro", rate: 12.7 },
+            GBP: { name: "British Pound", rate: 14.9 },
+            JPY: { name: "Japanese Yen", rate: 0.081 },
+            AUD: { name: "Australian Dollar", rate: 7.9 },
+            CAD: { name: "Canadian Dollar", rate: 8.6 },
+            CHF: { name: "Swiss Franc", rate: 13.2 },
+            CNY: { name: "Chinese Yuan", rate: 1.67 },
+            SEK: { name: "Swedish Krona", rate: 1.12 },
+            NZD: { name: "New Zealand Dollar", rate: 7.1 },
+            MXN: { name: "Mexican Peso", rate: 0.56 },
+            SGD: { name: "Singapore Dollar", rate: 8.7 },
+            HKD: { name: "Hong Kong Dollar", rate: 1.47 },
+            NOK: { name: "Norwegian Krone", rate: 1.09 },
+            KRW: { name: "South Korean Won", rate: 0.0089 },
+            TRY: { name: "Turkish Lira", rate: 0.39 },
+            RUB: { name: "Russian Ruble", rate: 0.13 },
+            INR: { name: "Indian Rupee", rate: 0.14 },
+            BRL: { name: "Brazilian Real", rate: 2.3 },
+            ZAR: { name: "South African Rand", rate: 0.65 },
+            NGN: { name: "Nigerian Naira", rate: 0.025 },
+            EGP: { name: "Egyptian Pound", rate: 0.37 },
+            KES: { name: "Kenyan Shilling", rate: 0.085 },
+            MAD: { name: "Moroccan Dirham", rate: 1.15 },
+            AED: { name: "UAE Dirham", rate: 3.13 },
+            SAR: { name: "Saudi Riyal", rate: 3.07 },
+            QAR: { name: "Qatari Riyal", rate: 3.16 },
+            KWD: { name: "Kuwaiti Dinar", rate: 37.5 },
+            BHD: { name: "Bahraini Dinar", rate: 30.5 }
+        };
+
+        const cryptoCurrencies = {
+            BTC: { name: "Bitcoin", rate: 341500 },
+            ETH: { name: "Ethereum", rate: 23000 },
+            BNB: { name: "Binance Coin", rate: 3450 },
+            ADA: { name: "Cardano", rate: 5.2 },
+            XRP: { name: "Ripple", rate: 6.8 },
+            DOGE: { name: "Dogecoin", rate: 0.85 },
+            DOT: { name: "Polkadot", rate: 92 },
+            UNI: { name: "Uniswap", rate: 75 },
+            LTC: { name: "Litecoin", rate: 1150 },
+            LINK: { name: "Chainlink", rate: 115 },
+            BCH: { name: "Bitcoin Cash", rate: 2300 },
+            XLM: { name: "Stellar", rate: 1.7 },
+            USDT: { name: "Tether", rate: 11.5 },
+            USDC: { name: "USD Coin", rate: 11.5 },
+            BUSD: { name: "Binance USD", rate: 11.5 },
+            MATIC: { name: "Polygon", rate: 11.2 },
+            SOL: { name: "Solana", rate: 575 },
+            TRX: { name: "TRON", rate: 0.92 },
+            EOS: { name: "EOS", rate: 13.8 },
+            XMR: { name: "Monero", rate: 2300 },
+            ALGO: { name: "Algorand", rate: 2.1 },
+            VET: { name: "VeChain", rate: 0.35 },
+            ATOM: { name: "Cosmos", rate: 145 },
+            XTZ: { name: "Tezos", rate: 15.5 },
+            FIL: { name: "Filecoin", rate: 70 }
+        };
+
+        function updateCurrencyList() {
+            const select = document.getElementById('currency');
+            select.innerHTML = ''; // Clear existing options
+            const currencyType = document.querySelector('input[name="currencyType"]:checked').value;
+            const currencies = currencyType === 'fiat' ? fiatCurrencies : cryptoCurrencies;
+
+            for (const [code, data] of Object.entries(currencies)) {
+                const option = document.createElement('option');
+                option.value = code;
+                option.innerHTML = `${code} - ${data.name}`;
+                select.appendChild(option);
+            }
+        }
+
+        function convertCurrency() {
+            const currencyCode = document.getElementById('currency').value;
+            const amount = document.getElementById('amount').value;
+            if (amount === '' || isNaN(amount)) {
+                alert('Please enter a valid number');
+                return;
+            }
+            const currencyType = document.querySelector('input[name="currencyType"]:checked').value;
+            const currencies = currencyType === 'fiat' ? fiatCurrencies : cryptoCurrencies;
+            const rate = currencies[currencyCode].rate;
+            const cedis = (parseFloat(amount) * rate).toFixed(2);
+            document.getElementById('result').innerHTML = `${amount} ${currencyCode} = ${cedis} GHS`;
+            document.getElementById('rateInfo').innerHTML = `Exchange Rate: 1 ${currencyCode} = ${rate.toFixed(4)} GHS`;
+        }
+
+        // Update the last updated time
+        const now = new Date();
+        document.getElementById('updateTime').textContent = now.toLocaleString('en-GH', { timeZone: 'Africa/Accra' });
+
+        // Populate currencies when the page loads
+        window.onload = updateCurrencyList;
+    </script>
+</body></html>
