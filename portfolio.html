@@ -4,17 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Abihu Kwashie Agede - Portfolio</title>
     <link rel="stylesheet" href="portfolio.css" />
-    <!-- Bootstrap CSS -->
 
     <script
       src="https://kit.fontawesome.com/6ed0e636b5.js"
       crossorigin="anonymous"
     ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
 
   <body>
@@ -23,9 +17,11 @@
         <div class="logo"></div>
         <div class="ulparent">
           <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#offer">Services</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <li><a href="#project">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
@@ -46,7 +42,7 @@
         <p class="ps">
           A passionate Frontend Developer crafting exceptional web experiences.
         </p>
-        <a href="#projects" class="cta-button">View Our Work</a>
+        <a href="#project" class="cta-button">View Our Work</a>
       </div>
       <div class="hero-image" class="animate__animated animate__zoomIn">
         <img
@@ -78,9 +74,47 @@
         amazing together!
       </p>
     </section>
-
+    <h1 id="offer" class="service-header">Our Services</h1>
+    <section class="services">
+      <div class="service">
+        <img class="icons" src="icons8-web-50.png" alt="" />
+        <h5 class="h1s">Landing Page</h5>
+        <p class="p1s">
+          Landing Pages Custom-designed landing pages optimized for conversions,
+          helping businesses capture leads, promote products, or drive specific
+          actions with a clean and professional design.
+        </p>
+      </div>
+      <div class="service">
+        <img class="icons" src="icons8-form-100.png" alt="" />
+        <h5 class="h1s">Contact Form</h5>
+        <p class="p1s">
+          Secure and user-friendly contact forms that allow customers to reach
+          out easily, collect inquiries, and enhance communication with
+          automated email responses and database integration.
+        </p>
+      </div>
+      <div class="service">
+        <img class="icons" src="icons8-location-48.png" alt="" />
+        <h5 class="h1s">Business Locations</h5>
+        <p class="p1s">
+          nteractive maps and business location pages that help customers find
+          your physical stores or offices, including Google Maps integration,
+          directions, and key business details.
+        </p>
+      </div>
+      <div class="service">
+        <img class="icons" src="icons8-website-100.png" alt="" />
+        <h5 class="h1s">E-commerce Websites</h5>
+        <p class="p1s">
+          Fully functional online stores with seamless payment integration,
+          product management, shopping carts, and a smooth user experience to
+          maximize online sales and customer satisfaction
+        </p>
+      </div>
+    </section>
     <section id="skills" data-aos="zoom-in">
-      <h2>Skills</h2>
+      <h2>Skills we Offer</h2>
       <div class="skills-container">
         <div class="skill">
           <img src="html 5.png" alt="HTML" />
@@ -158,6 +192,7 @@
     </section>
 
     <div class="carousel-container">
+      <h1 class="service-header" id="project">Our Project</h1>
       <div class="carousel-slide">
         <div class="carousel-item">
           <video
@@ -168,7 +203,7 @@
             muted
           ></video>
           <div class="carousel-caption">
-            <span class="cu">restuarant websites</span>
+            <h4 class="cu">restuarant websites</h4>
           </div>
         </div>
         <div class="carousel-item">
@@ -179,7 +214,7 @@
             loop
             muted
           ></video>
-          <div class="carousel-caption"><span class="cu">ip tracker</span></div>
+          <div class="carousel-caption"><h4 class="cu">ip tracker</h4></div>
         </div>
         <div class="carousel-item">
           <video
@@ -190,7 +225,7 @@
             muted
           ></video>
           <div class="carousel-caption">
-            <span class="cu">Currencies convertor</span>
+            <h4 class="cu">Currencies convertor</h4>
           </div>
         </div>
       </div>
@@ -201,6 +236,12 @@
         &#10095;
       </button>
     </div>
+    <h1 id="offer" class="service-header">Our Team</h1>
+    <section class="services">
+      <div class="service"></div>
+      <div class="service"></div>
+      <div class="service"></div>
+    </section>
 
     <section id="projects" data-aos="zoom-in"></section>
     <div class="formParent" class="animate__animated animate__flipInX">
@@ -297,39 +338,35 @@
     ></script>
     <script>
       (function () {
-        emailjs.init({
-          publicKey: "dKnidPp3Y-VIZBfoI",
-        });
+        emailjs.init("dKnidPp3Y-VIZBfoI");
       })();
+
       const username = document.getElementById("username");
       const email = document.getElementById("email");
       const message = document.getElementById("message");
 
       document.getElementById("MySubmit").addEventListener("click", (e) => {
         e.preventDefault();
-        templateParams = {
-          to_name: "<Abihu></Code>",
+        const templateParams = {
           from_name: username.value,
           from_email: email.value,
           message: message.value,
         };
+
         emailjs
           .send("service_lpa2zb7", "template_zueuiwk", templateParams)
           .then(
             (res) => {
-              if (res) {
-                const popsent = document.querySelector(".popsent");
-                popsent.style.display = "block";
+              const popsent = document.querySelector(".popsent");
+              popsent.style.display = "block";
+              console.log(res, popsent);
+              setTimeout(() => {
+                popsent.style.display = "none";
                 console.log(res, popsent);
-                setTimeout(() => {
-                  popsent.style.display = "none";
-                  console.log(res, popsent);
-                  templateParams = {};
-                }, 1000);
-              }
+              }, 1000);
             },
-            function (err) {
-              console.log(err, "faild");
+            (err) => {
+              console.log(err, "failed");
             }
           );
       });
