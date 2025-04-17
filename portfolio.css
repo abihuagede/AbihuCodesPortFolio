@@ -348,7 +348,7 @@ textarea:focus-within {
 }
 
 footer {
-  border-top: 1px solid var(--bg-color);
+  border-top: 1px solid var(--border-color);
   border-radius: 15px;
   color: var(--text-color);
   text-align: center;
