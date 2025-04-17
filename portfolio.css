@@ -65,7 +65,7 @@ img {
   max-width: 1200px;
   margin: 10px;
   backdrop-filter: var(--backdrop-filter);
-  background: linear-gradient(to right, #aa6f0048, #ffffff75);
+  background: var(--nav-bg-color);
 
   width: 300px;
 
