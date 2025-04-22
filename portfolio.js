@@ -16,33 +16,27 @@ chat.addEventListener("click", (even) => {
   formParent.style.display =
     formParent.style.display === "block" ? "none" : "block";
 });
- 
 
 let slideIndex = 0;
-const slides = document.querySelector('.carousel-slide');
-const items = document.querySelectorAll('.carousel-item');
+const slides = document.querySelector(".carousel-slide");
+const items = document.querySelectorAll(".carousel-item");
 
 function showSlide(index) {
-    if (index < 0) {
-        slideIndex = items.length - 1;
-    } else if (index >= items.length) {
-        slideIndex = 0;
-    } else {
-        slideIndex = index;
-    }
+  if (index < 0) {
+    slideIndex = items.length - 1;
+  } else if (index >= items.length) {
+    slideIndex = 0;
+  } else {
+    slideIndex = index;
+  }
 
-    slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+  slides.style.transform = `translateX(-${slideIndex * 100}%)`;
 }
 
 function nextSlide() {
-    showSlide(slideIndex + 1);
+  showSlide(slideIndex + 1);
 }
 
 function prevSlide() {
-    showSlide(slideIndex - 1);
+  showSlide(slideIndex - 1);
 }
-
-// Auto-advance (optional)
-  // Change slide every 5 seconds
-
-

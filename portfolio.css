@@ -7,16 +7,16 @@ body {
   line-height: 1.6;
   transition: 1s ease-in;
 }
- 
+
 :root {
   --bg-color: rgb(0, 0, 0);
   --nav-bg-color: rgb(59, 55, 57);
-  --text-color:rgb(255, 255, 255);
+  --text-color: rgb(255, 255, 255);
   --link-color: blue;
   --link-hover-color: orange;
   --button-color: rgb(255, 22, 111);
   --button-hover-color: orange;
-  --button-text-color:  rgb(255, 22, 111);
+  --button-text-color: rgb(255, 22, 111);
   --button-text-hover-color: orange;
   --border-color: rgb(255, 22, 111);
   --border-hover-color: orange;
@@ -87,7 +87,7 @@ nav {
   align-items: center;
   vertical-align: top;
   position: fixed;
-  background-color: var(--nav-bg-color);
+
   width: 100%;
   box-shadow: var(--box-shadow);
   top: 0px;
