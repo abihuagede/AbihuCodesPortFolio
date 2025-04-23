@@ -21,7 +21,7 @@ body {
   --border-color: rgb(255, 22, 111);
   --border-hover-color: orange;
   --border-radius: 5px;
-  --box-shadow: 5px 5px 15px hsla(0, 0%, 0%, 0.342);
+  --box-shadow: 5px 5px 15px rgba(255, 22, 111, 0.377);
   --box-shadow-hover: 5px 5px 15px hsla(39, 100%, 50%, 0.425);
   --backdrop-filter: blur(15px);
   --backdrop-filter-hover: blur(10px);
@@ -64,6 +64,7 @@ img {
   vertical-align: top;
   max-width: 1200px;
   margin: 10px;
+  border: 2px solid var(--border-color);
   backdrop-filter: var(--backdrop-filter);
   background: var(--nav-bg-color);
 
@@ -73,6 +74,9 @@ img {
 }
 .service:hover {
   box-shadow: 5px 5px 15px hsla(0, 0%, 0%, 0.356);
+  width: 360px;
+
+  cursor: pointer;
 }
 
 .service-header {
@@ -80,7 +84,9 @@ img {
   margin-bottom: 0%;
   margin-top: 30px;
 }
-
+.hero-image {
+  box-shadow: -5px -5px 15px var(--box-shadow);
+}
 nav {
   display: flex;
   justify-content: space-between;
@@ -342,6 +348,9 @@ textarea:focus-within {
   border-radius: 5px;
   cursor: pointer;
 }
+#hero {
+  margin-top: 25px;
+}
 
 #contact-form button:hover {
   background-color: var(--button-hover-color);
@@ -396,19 +405,16 @@ footer {
   .ulparent {
     position: absolute;
     z-index: 1;
-    margin: 0%;
-    backdrop-filter: blur(15px);
-    background: var(--nav-bg-color);
     display: flex;
+    justify-content: safe;
     top: 50px;
     left: 0px;
-    width: 50%;
-    box-shadow: var(--box-shadow);
-    backdrop-filter: blur(15px);
+    background-color: rgba(0, 0, 0, 0.562);
+    width: 100%;
   }
   nav {
     display: flex;
-
+    border: none;
     justify-content: space-between;
     max-height: max-content;
 
@@ -434,6 +440,7 @@ footer {
   ul {
     padding: 20px;
     width: 200px;
+    color: #00b7ff;
   }
 
   nav ul li {
@@ -441,10 +448,9 @@ footer {
     margin-bottom: 0.5rem;
     color: var(--text-color);
   }
-  li:hover {
-    border: 1px solid var(--border-color);
+  li {
+    border-bottom: 1px solid var(--border-color);
     width: 100%;
-    padding: 6px;
   }
 
   .hero-content {
@@ -564,13 +570,13 @@ p {
 .carousel-container {
   width: 100%;
   backdrop-filter: blur(15px);
-  background: var(--nav-bg-color);
+  background: transparent;
   max-width: 800px;
   overflow: hidden;
   margin: auto;
   top: 0%;
   position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
   border-radius: 8px;
 }
 
