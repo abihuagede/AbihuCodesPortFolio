@@ -40,3 +40,6 @@ function nextSlide() {
 function prevSlide() {
   showSlide(slideIndex - 1);
 }
+function openCV() {
+  window.open("abihuagede.pdf", "_blank");
+}
