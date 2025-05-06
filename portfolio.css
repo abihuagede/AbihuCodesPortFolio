@@ -353,7 +353,7 @@ textarea:focus-within {
 #contact-form button {
   padding: 1rem 2rem;
   background-color: var(--button-color);
-  color: var(--text-color);
+  color: var(--bg-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
