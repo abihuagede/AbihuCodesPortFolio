@@ -9,19 +9,19 @@ body {
 }
 
 :root {
-  --bg-color: rgb(0, 0, 0);
-  --nav-bg-color: rgb(59, 55, 57);
-  --text-color: rgb(255, 255, 255);
+  --bg-color: rgb(255, 255, 255);
+  --nav-bg-color: rgb(255, 255, 255);
+  --text-color: rgb(23, 195, 201);
   --link-color: blue;
   --link-hover-color: orange;
-  --button-color: rgb(255, 22, 111);
+  --button-color: rgb(23, 195, 201);
   --button-hover-color: orange;
-  --button-text-color: rgb(255, 22, 111);
+  --button-text-color: rgb(23, 195, 201);
   --button-text-hover-color: orange;
-  --border-color: rgb(255, 22, 111);
+  --border-color: rgb(23, 195, 201);
   --border-hover-color: orange;
   --border-radius: 5px;
-  --box-shadow: 5px 5px 15px rgba(255, 22, 111, 0.377);
+  --box-shadow: 5px 5px 15px rgba(23, 195, 201, 0.308);
   --box-shadow-hover: 5px 5px 15px hsla(39, 100%, 50%, 0.425);
   --backdrop-filter: blur(15px);
   --backdrop-filter-hover: blur(10px);
@@ -65,16 +65,13 @@ img {
   max-width: 1200px;
   margin: 10px;
   border: 2px solid var(--border-color);
-  backdrop-filter: var(--backdrop-filter);
-  background: var(--nav-bg-color);
-
+  backdrop-filter: var(15px);
   width: 300px;
   display: inline-block;
   border-radius: 5px;
 }
 .service:hover {
   box-shadow: 5px 5px 15px hsla(0, 0%, 0%, 0.356);
-
   cursor: pointer;
 }
 
@@ -83,9 +80,7 @@ img {
   margin-bottom: 0%;
   margin-top: 30px;
 }
-.hero-image {
-  box-shadow: -5px -5px 15px var(--box-shadow);
-}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -143,7 +138,9 @@ nav ul {
   padding: 0 2rem;
 }
 li:hover {
+  background-color: var(--text-color);
   border: 1px solid var(--text-color);
+  color: var(--bg-color);
 }
 
 li {
@@ -184,11 +181,7 @@ nav ul li a:hover {
 .hero-image {
   width: 300px;
   border-radius: 5px;
-
   height: 300px;
-}
-.hero-image:hover {
-  box-shadow: var(--box-shadow);
 }
 
 .portfolioPic {
@@ -493,7 +486,8 @@ footer {
 
   .hero-content,
   .hero-image {
-    width: 90%;
+    margin-top: 20px;
+    width: 70%;
     text-align: center;
   }
 }
